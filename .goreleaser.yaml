@@ -15,8 +15,8 @@ gomod:
 report_sizes: true
 
 builds:
-  - id: gateway
-    binary: gateway
+  - id: caddy-gateway
+    binary: caddy-gateway
     env:
       - CGO_ENABLED=0
     goos:
@@ -28,7 +28,7 @@ builds:
       - -trimpath
 
 kos:
-  - build: gateway
+  - build: caddy-gateway
     repositories:
       - ghcr.io/butlergroup/caddy-gateway
     platforms:
@@ -45,7 +45,7 @@ kos:
     sbom: 'spdx'
     bare: true
     preserve_import_paths: false
-    base_image: gcr.io/distroless/static-debian12:nonroot
+    base_image: gcr.io/distroless/static:nonroot
     labels:
       org.opencontainers.image.description: "Kubernetes Gateway API implementation powered by Caddy"
       org.opencontainers.image.licenses: Apache-2.0

@@ -1,12 +1,24 @@
 # Changelog
 
-## Caddy Gateway Version v0.2.12
+## Caddy Gateway Version v0.2.13
 
 #### New Features
 
 #### Improvements
 
 #### Fixes
+
+---
+
+## Caddy Gateway Version v0.2.12 (05-18-2026)
+
+#### New Features
+
+#### Improvements
+
+#### Fixes
+
+- Re-run of workflows
 
 ---
 
