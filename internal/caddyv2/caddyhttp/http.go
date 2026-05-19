@@ -9,7 +9,7 @@ import (
 	"io"
 	"strconv"
 
-	caddy "github.com/caddyserver/gateway/internal/caddyv2"
+	caddy "github.com/butlergroup/caddy-gateway/internal/caddyv2"
 )
 
 // App is a robust, production-ready HTTP server.

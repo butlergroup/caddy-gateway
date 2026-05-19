@@ -7,8 +7,8 @@ import (
 	"context"
 	"fmt"
 
-	gateway "github.com/caddyserver/gateway/internal"
-	"github.com/caddyserver/gateway/internal/routechecks"
+	gateway "github.com/butlergroup/caddy-gateway/internal"
+	"github.com/butlergroup/caddy-gateway/internal/routechecks"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
 	corev1 "k8s.io/api/core/v1"

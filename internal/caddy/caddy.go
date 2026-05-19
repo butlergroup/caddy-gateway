@@ -16,11 +16,11 @@ import (
 	gatewayv1alpha3 "sigs.k8s.io/gateway-api/apis/v1alpha3"
 	gatewayv1beta1 "sigs.k8s.io/gateway-api/apis/v1beta1"
 
-	gateway "github.com/caddyserver/gateway/internal"
-	caddyv2 "github.com/caddyserver/gateway/internal/caddyv2"
-	"github.com/caddyserver/gateway/internal/caddyv2/caddyhttp"
-	"github.com/caddyserver/gateway/internal/caddyv2/caddytls"
-	"github.com/caddyserver/gateway/internal/layer4"
+	gateway "github.com/butlergroup/caddy-gateway/internal"
+	caddyv2 "github.com/butlergroup/caddy-gateway/internal/caddyv2"
+	"github.com/butlergroup/caddy-gateway/internal/caddyv2/caddyhttp"
+	"github.com/butlergroup/caddy-gateway/internal/caddyv2/caddytls"
+	"github.com/butlergroup/caddy-gateway/internal/layer4"
 )
 
 // Config represents the configuration for a Caddy server.

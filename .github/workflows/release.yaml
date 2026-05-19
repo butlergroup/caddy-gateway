@@ -1,5 +1,12 @@
 name: Release
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     tags:
@@ -12,13 +19,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-24.04]
-        go: ["1.25.1"]
+        os: [ubuntu-latest]
+        go: ["1.26.3"]
     permissions:
       attestations: write
       id-token: write
       contents: write
       packages: write
+      security-events: write
     steps:
       - name: Code checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -52,6 +60,19 @@ jobs:
         with:
           args: release --clean
 
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25
+        with:
+          image-ref: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}
+          format: "sarif"
+          output: "trivy-results1.sarif"
+          # exit-code: 1 # fail the workflow if vulnerailities are found
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@9e0d7b8d25671d64c341c19c0152d693099fb5ba # v4.35.5
+        with:
+          sarif_file: "trivy-results1.sarif"
+
       - name: Generate SLSA metadata
         id: slsa
         env:
@@ -64,6 +85,14 @@ jobs:
           echo 'hashes='"$(base64 -w0 < "$checksum_file")" >> "$GITHUB_OUTPUT"
           tag_name="$(echo "$METADATA" | jq -r '.tag')"
           echo 'tag_name='"$tag_name" >> "$GITHUB_OUTPUT"
+
+      - name: GHCR retention policy
+        uses: actions/delete-package-versions@e5bc658cc4c965c472efe991f8beea3981499c55 # v5.0.0
+        with:
+          package-name: gateway
+          package-type: container
+          min-versions-to-keep: 51
+
     outputs:
       hashes: "${{ steps.slsa.outputs.hashes }}"
       tag_name: "${{ steps.slsa.outputs.tag_name }}"

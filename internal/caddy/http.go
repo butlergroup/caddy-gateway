@@ -18,13 +18,13 @@ import (
 	gatewayv1 "sigs.k8s.io/gateway-api/apis/v1"
 	gatewayv1alpha3 "sigs.k8s.io/gateway-api/apis/v1alpha3"
 
-	gateway "github.com/caddyserver/gateway/internal"
-	caddy "github.com/caddyserver/gateway/internal/caddyv2"
-	"github.com/caddyserver/gateway/internal/caddyv2/caddyhttp"
-	"github.com/caddyserver/gateway/internal/caddyv2/caddyhttp/headers"
-	"github.com/caddyserver/gateway/internal/caddyv2/caddyhttp/reverseproxy"
-	"github.com/caddyserver/gateway/internal/caddyv2/caddyhttp/rewrite"
-	"github.com/caddyserver/gateway/internal/caddyv2/caddytls"
+	gateway "github.com/butlergroup/caddy-gateway/internal"
+	caddy "github.com/butlergroup/caddy-gateway/internal/caddyv2"
+	"github.com/butlergroup/caddy-gateway/internal/caddyv2/caddyhttp"
+	"github.com/butlergroup/caddy-gateway/internal/caddyv2/caddyhttp/headers"
+	"github.com/butlergroup/caddy-gateway/internal/caddyv2/caddyhttp/reverseproxy"
+	"github.com/butlergroup/caddy-gateway/internal/caddyv2/caddyhttp/rewrite"
+	"github.com/butlergroup/caddy-gateway/internal/caddyv2/caddytls"
 )
 
 func (i *Input) getHTTPServer(s *caddyhttp.Server, l gatewayv1.Listener) (*caddyhttp.Server, error) {

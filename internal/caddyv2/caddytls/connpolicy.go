@@ -6,7 +6,7 @@ package caddytls
 import (
 	"crypto/x509"
 
-	caddy "github.com/caddyserver/gateway/internal/caddyv2"
+	caddy "github.com/butlergroup/caddy-gateway/internal/caddyv2"
 )
 
 // ConnectionPolicies govern the establishment of TLS connections. It is

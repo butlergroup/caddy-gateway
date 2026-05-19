@@ -4,8 +4,8 @@
 package reverseproxy
 
 import (
-	caddy "github.com/caddyserver/gateway/internal/caddyv2"
-	"github.com/caddyserver/gateway/internal/caddyv2/caddytls"
+	caddy "github.com/butlergroup/caddy-gateway/internal/caddyv2"
+	"github.com/butlergroup/caddy-gateway/internal/caddyv2/caddytls"
 )
 
 type Transport interface {

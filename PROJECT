@@ -9,5 +9,5 @@ plugins:
   manifests.sdk.operatorframework.io/v2: {}
   scorecard.sdk.operatorframework.io/v2: {}
 projectName: caddy-gateway
-repo: github.com/caddyserver/gateway
+repo: github.com/butlergroup/caddy-gateway
 version: "3"

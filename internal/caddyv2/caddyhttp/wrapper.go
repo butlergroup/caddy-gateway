@@ -4,7 +4,7 @@
 package caddyhttp
 
 import (
-	"github.com/caddyserver/gateway/internal/caddyv2/caddyhttp/proxyprotocol"
+	"github.com/butlergroup/caddy-gateway/internal/caddyv2/caddyhttp/proxyprotocol"
 )
 
 // ListenerWrappers .

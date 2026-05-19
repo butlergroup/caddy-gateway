@@ -6,7 +6,7 @@ package routechecks
 import (
 	gatewayv1 "sigs.k8s.io/gateway-api/apis/v1"
 
-	gateway "github.com/caddyserver/gateway/internal"
+	gateway "github.com/butlergroup/caddy-gateway/internal"
 )
 
 func computeHosts[T ~string](gw *gatewayv1.Gateway, hostnames []T) []string {

@@ -6,7 +6,7 @@ package caddy
 import (
 	gatewayv1 "sigs.k8s.io/gateway-api/apis/v1"
 
-	"github.com/caddyserver/gateway/internal/caddyv2/caddyhttp"
+	"github.com/butlergroup/caddy-gateway/internal/caddyv2/caddyhttp"
 )
 
 // getPathMatcher .

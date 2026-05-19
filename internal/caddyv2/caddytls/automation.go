@@ -4,7 +4,7 @@
 package caddytls
 
 import (
-	caddy "github.com/caddyserver/gateway/internal/caddyv2"
+	caddy "github.com/butlergroup/caddy-gateway/internal/caddyv2"
 )
 
 // AutomationConfig governs the automated management of TLS certificates.

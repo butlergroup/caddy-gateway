@@ -6,7 +6,7 @@ package headers
 import (
 	"net/http"
 
-	"github.com/caddyserver/gateway/internal/caddyv2/caddyhttp"
+	"github.com/butlergroup/caddy-gateway/internal/caddyv2/caddyhttp"
 )
 
 type HandlerName string

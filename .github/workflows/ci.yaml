@@ -1,5 +1,12 @@
 name: CI
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches:
@@ -15,8 +22,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-24.04]
-        go: ["1.24.7", "1.25.1"]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        go: ["1.24.7", "1.25.1", "1.26.3"]
     permissions:
       contents: read
     steps:
@@ -33,6 +40,9 @@ jobs:
           CGO_ENABLED: 0
         run: |
           go mod download
+
+      - name: Install goveralls
+        run: go install github.com/mattn/goveralls@latest
 
       - name: go test
         env:
@@ -52,4 +62,9 @@ jobs:
           # need to occur for this command to work correctly.
           #
           # shellcheck disable=SC2046
-          go test -race $(go list ./... | grep -v /e2e)
+          go test -race -covermode atomic -coverprofile=covprofile $(go list ./... | grep -v /e2e)
+
+      - name: Send coverage
+        env:
+          COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: goveralls -coverprofile=covprofile -service=github

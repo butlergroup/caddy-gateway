@@ -22,7 +22,7 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/caddyserver/gateway/test/utils"
+	"github.com/butlergroup/caddy-gateway/test/utils"
 )
 
 const namespace = "caddy-system"
@@ -58,7 +58,7 @@ var _ = Describe("controller", Ordered, func() {
 			var err error
 
 			// projectimage stores the name of the image used in the example
-			projectimage := "example.com/caddy-gateway:v0.0.1"
+			projectimage := "ghcr.io/butlergroup/caddy-gateway/caddy-gateway:v0.2.0"
 
 			By("building the manager(Operator) image")
 			cmd := exec.Command("make", "docker-build", fmt.Sprintf("IMG=%s", projectimage))

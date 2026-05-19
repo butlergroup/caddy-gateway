@@ -4,7 +4,7 @@
 package l4tls
 
 import (
-	"github.com/caddyserver/gateway/internal/caddyv2/caddytls"
+	"github.com/butlergroup/caddy-gateway/internal/caddyv2/caddytls"
 )
 
 type HandlerName string

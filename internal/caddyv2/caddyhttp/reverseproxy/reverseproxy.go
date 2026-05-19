@@ -6,10 +6,10 @@ package reverseproxy
 import (
 	"encoding/json"
 
-	caddy "github.com/caddyserver/gateway/internal/caddyv2"
-	"github.com/caddyserver/gateway/internal/caddyv2/caddyhttp"
-	"github.com/caddyserver/gateway/internal/caddyv2/caddyhttp/headers"
-	"github.com/caddyserver/gateway/internal/caddyv2/caddyhttp/rewrite"
+	caddy "github.com/butlergroup/caddy-gateway/internal/caddyv2"
+	"github.com/butlergroup/caddy-gateway/internal/caddyv2/caddyhttp"
+	"github.com/butlergroup/caddy-gateway/internal/caddyv2/caddyhttp/headers"
+	"github.com/butlergroup/caddy-gateway/internal/caddyv2/caddyhttp/rewrite"
 )
 
 type HandlerName string

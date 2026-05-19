@@ -4,7 +4,7 @@
 package proxyprotocol
 
 import (
-	caddy "github.com/caddyserver/gateway/internal/caddyv2"
+	caddy "github.com/butlergroup/caddy-gateway/internal/caddyv2"
 )
 
 type ListenerWrapperName string

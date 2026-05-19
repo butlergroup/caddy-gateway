@@ -1,5 +1,39 @@
 # Changelog
 
+## Caddy Gateway Version v0.2.0
+
+#### New Features
+- Added code-of-conduct.md
+- Added .github/CODEOWNERS
+- Added .github/FUNDING.yml
+- Added .github/ISSUE_TEMPLATE/bug_report.md
+- Added .github/ISSUE_TEMPLATE/feature_request.md
+- Added .github/workflows/defender-for-devops.yml
+- Added .github/workflows/scorecard.yml
+- Added .github/workflows/osv-scanner.yml
+- Added .github/workflows/dependabot-auto-merge.yml
+- Added .github/workflows/greetings.yml
+- Added .github/workflows/stale.yml
+- Added SECURITY.md
+- Added privacy-policy.md
+- Added terms-of-service.md
+
+#### Improvements
+- Updated go.mod dependencies to latest and to use latest Go version (1.26.3)
+- Updated dependabot.yaml to run daily and include package-ecosystem: docker
+- Modified all worksflows with permission and concurrency settings
+- Modified all files to point to this repo
+- Modified README.md to include badges for workflows and security scanners, notes on this fork, Terms of Service, Privacy Policy, Contact Info, and Star History
+- Modified caddy.yaml and caddy.Containerfile to use latest version of Caddy (2.11.3)
+- Enabled goveralls in ci.yaml
+- Modified caddy.yaml and release.yaml to use Trivy to scan images
+- Modified caddy.yaml and release.yaml with an image retention policy
+
+#### Fixes
+
+
+-----
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),

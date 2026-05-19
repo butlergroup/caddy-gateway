@@ -66,7 +66,7 @@ If you don't need DNS challenges you can install our default LetsEncrypt Cluster
 additional configuration.
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/caddyserver/gateway/master/example/letsencrypt.yaml
+kubectl apply -f https://raw.githubusercontent.com/butlergroup/caddy-gateway/master/example/letsencrypt.yaml
 ```
 
 ## Installation and Configuration
@@ -90,7 +90,7 @@ This example creates both a SelfSigned issuer that bootstraps a regular CA issue
 with the default settings, then no changes need to be made.
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/caddyserver/gateway/master/example/internal-issuer.yaml
+kubectl apply -f https://raw.githubusercontent.com/butlergroup/caddy-gateway/master/example/internal-issuer.yaml
 ```
 
 ### Deploy the Operator
@@ -99,7 +99,7 @@ This deploys the Caddy Gateway Controller (the code in this repository). This is
 to program the actual Caddy web-server instances.
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/caddyserver/gateway/master/example/operator.yaml
+kubectl apply -f https://raw.githubusercontent.com/butlergroup/caddy-gateway/master/example/operator.yaml
 ```
 
 ### Deploy a Caddy instance
@@ -107,7 +107,7 @@ kubectl apply -f https://raw.githubusercontent.com/caddyserver/gateway/master/ex
 This deploys a Deployment of three Caddy instances, alongside a Load Balancer.
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/caddyserver/gateway/master/example/caddy.yaml
+kubectl apply -f https://raw.githubusercontent.com/butlergroup/caddy-gateway/master/example/caddy.yaml
 ```
 
 ## Create the Gateway

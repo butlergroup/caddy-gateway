@@ -4,7 +4,7 @@
 package caddytls
 
 import (
-	caddy "github.com/caddyserver/gateway/internal/caddyv2"
+	caddy "github.com/butlergroup/caddy-gateway/internal/caddyv2"
 )
 
 // SessionTicketService configures and manages TLS session tickets.

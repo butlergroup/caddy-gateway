@@ -30,7 +30,7 @@ builds:
 kos:
   - build: gateway
     repositories:
-      - ghcr.io/caddyserver/gateway
+      - ghcr.io/butlergroup/caddy-gateway
     platforms:
       - linux/amd64
       - linux/arm64

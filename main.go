@@ -33,7 +33,7 @@ import (
 
 	//+kubebuilder:scaffold:imports
 
-	"github.com/caddyserver/gateway/internal/controller"
+	"github.com/butlergroup/caddy-gateway/internal/controller"
 	"github.com/go-logr/logr"
 )
 

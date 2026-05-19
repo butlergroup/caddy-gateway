@@ -11,8 +11,8 @@ import (
 	gatewayv1 "sigs.k8s.io/gateway-api/apis/v1"
 	gatewayv1beta1 "sigs.k8s.io/gateway-api/apis/v1beta1"
 
-	gateway "github.com/caddyserver/gateway/internal"
-	"github.com/caddyserver/gateway/internal/caddyv2/caddytls"
+	gateway "github.com/butlergroup/caddy-gateway/internal"
+	"github.com/butlergroup/caddy-gateway/internal/caddyv2/caddytls"
 )
 
 // getCertKeyPEMPair .

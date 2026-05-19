@@ -39,8 +39,8 @@ import (
 	gatewayv1alpha3 "sigs.k8s.io/gateway-api/apis/v1alpha3"
 	gatewayv1beta1 "sigs.k8s.io/gateway-api/apis/v1beta1"
 
-	gateway "github.com/caddyserver/gateway/internal"
-	"github.com/caddyserver/gateway/internal/caddy"
+	gateway "github.com/butlergroup/caddy-gateway/internal"
+	"github.com/butlergroup/caddy-gateway/internal/caddy"
 )
 
 // +kubebuilder:rbac:groups=discovery.k8s.io,resources=endpointslices,verbs=get;list;watch

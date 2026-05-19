@@ -26,8 +26,8 @@ import (
 	gatewayv1 "sigs.k8s.io/gateway-api/apis/v1"
 	gatewayv1beta1 "sigs.k8s.io/gateway-api/apis/v1beta1"
 
-	gateway "github.com/caddyserver/gateway/internal"
-	"github.com/caddyserver/gateway/internal/routechecks"
+	gateway "github.com/butlergroup/caddy-gateway/internal"
+	"github.com/butlergroup/caddy-gateway/internal/routechecks"
 )
 
 // +kubebuilder:rbac:groups=gateway.networking.k8s.io,resources=httproutes,verbs=get;list;watch

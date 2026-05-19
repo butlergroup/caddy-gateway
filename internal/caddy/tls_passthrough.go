@@ -7,10 +7,10 @@ import (
 	"net"
 	"strconv"
 
-	gateway "github.com/caddyserver/gateway/internal"
-	"github.com/caddyserver/gateway/internal/layer4"
-	"github.com/caddyserver/gateway/internal/layer4/l4proxy"
-	"github.com/caddyserver/gateway/internal/layer4/l4tls"
+	gateway "github.com/butlergroup/caddy-gateway/internal"
+	"github.com/butlergroup/caddy-gateway/internal/layer4"
+	"github.com/butlergroup/caddy-gateway/internal/layer4/l4proxy"
+	"github.com/butlergroup/caddy-gateway/internal/layer4/l4tls"
 	corev1 "k8s.io/api/core/v1"
 	gatewayv1 "sigs.k8s.io/gateway-api/apis/v1"
 )

@@ -1,11 +1,37 @@
-# Caddy Gateway (WIP)
+[![](https://img.shields.io/badge/license-AGPL_3.0-blue.svg)](https://opensource.org/licenses/AGPL_3.0)
+[![CodeQL](https://github.com/butlergroup/caddy-gateway/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/butlergroup/caddy-gateway/actions/workflows/github-code-scanning/codeql)
+[![Build Caddy](https://github.com/butlergroup/caddy-gateway/actions/workflows/caddy.yaml/badge.svg)](https://github.com/butlergroup/caddy-gateway/actions/workflows/caddy.yaml)
+[![Build & Release Gateway](https://github.com/butlergroup/caddy-gateway/actions/workflows/release.yaml/badge.svg)](https://github.com/butlergroup/caddy-gateway/actions/workflows/release.yaml)
+[![Tests/CI](https://github.com/butlergroup/caddy-gateway/actions/workflows/ci.yaml/badge.svg)](https://github.com/butlergroup/caddy-gateway/actions/workflows/ci.yaml)
+[![Dependabot Updates](https://github.com/butlergroup/caddy-gateway/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/butlergroup/caddy-gateway/actions/workflows/dependabot/dependabot-updates)
+[![Go Report Card](https://goreportcard.com/badge/github.com/butlergroup/caddy-gateway)](https://goreportcard.com/report/github.com/butlergroup/caddy-gateway)
+[![OSV-Scanner](https://github.com/butlergroup/caddy-gateway/actions/workflows/osv-scanner.yml/badge.svg)](https://github.com/butlergroup/caddy-gateway/actions/workflows/osv-scanner.yml)
+[![Snyk Security-Monitored](https://img.shields.io/badge/Snyk%20Security-Monitored-purple)](https://app.snyk.io/share/784f6fef-6aaf-47ed-81ba-99e05b854665)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/12894/badge)](https://www.bestpractices.dev/projects/12894)
+[![Scorecard supply-chain security](https://github.com/butlergroup/caddy-gateway/actions/workflows/scorecard.yml/badge.svg)](https://github.com/butlergroup/caddy-gateway/actions/workflows/scorecard.yml)
+[![Microsoft Defender For Devops](https://github.com/butlergroup/caddy-gateway/actions/workflows/defender-for-devops.yml/badge.svg)](https://github.com/butlergroup/caddy-gateway/actions/workflows/defender-for-devops.yml)
+[![Coverage Status](https://coveralls.io/repos/github/butlergroup/caddy-gateway/badge.svg?branch=master)](https://coveralls.io/github/butlergroup/caddy-gateway?branch=master)
+[![Feature Requests](https://img.shields.io/github/issues/butlergroup/caddy-gateway/feature-request.svg)](https://github.com/butlergroup/caddy-gateway/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
+[![Bugs](https://img.shields.io/github/issues/butlergroup/caddy-gateway/bug.svg)](https://github.com/butlergroup/caddy-gateway/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug)
+
+# Caddy Gateway
 
 Implementation of the [Kubernetes](https://kubernetes.io) [Gateway API](https://gateway-api.sigs.k8s.io/)
 utilizing [Caddy](https://caddyserver.com/) as the underlying web server.
 
+## Notes on this fork
+
+- Created to update dependencies and include the latest version of Caddy during builds
+- Several security scanners have been added to the repo to ensure any issues are found quickly
+- Will be maintained (depenencies/packages updated & CVEs addressed in a timely manner, etc.)
+
+## Sponsorship/Donation
+
+Sponsorships/Donations are happily accepted via Github Sponsors, or via Storj at 0x6E86f2734372ee559E62e6AB04Edc2b0455A86bF (my cats and I need to eat!)
+
 ## Description
 
-By (ab)using the [Caddy Admin API](https://caddyserver.com/docs/api) we can dynamically program
+By using the [Caddy Admin API](https://caddyserver.com/docs/api) we can dynamically program
 Caddy with any configuration we want on the fly, without downtime. Instead of requiring sidecar
 containers or custom Caddy modules.
 
@@ -17,7 +43,7 @@ resource. See <https://gateway-api.sigs.k8s.io/#whats-the-difference-between-gat
 for more details.
 
 There is an Kubernetes Ingress controller implementation that also utilizes Caddy as the underlying
-webserver that can be found at <https://github.com/caddyserver/ingress>. This project differs in
+webserver that can be found at <https://github.com/butlergroup/caddy-ingress>. This project differs in
 a few ways.
 
 1. This project only implements support for the Gateway API resources and not the Ingress resource.
@@ -102,6 +128,9 @@ See the [example](./example).
 
 ## License
 
+Copyright (C) 2025 The Butler Group LLC <dev@butlergroup.net>
+[AGPL 3.0](LICENSE)
+
 Copyright 2024 Matthew Penner
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -126,3 +155,23 @@ open-source projects.
 I'd like to thank the [Cilium](https://github.com/cilium/cilium/) maintainers and community
 contributors for building the base logic for the controller implementation, allowing me to focus
 on Caddy integration rather than Gateway API semantics.
+
+### Contribution
+
+Learn how to start contributing on the [Contributing Guidline](CONTRIBUTING.md).
+
+## Terms of Service
+
+Please read our [Terms of Service](https://github.com/butlergroup/caddy-gateway/blob/master/terms-of-service.md) before using our software. Violators of these Terms are not supported by the community or contributors.
+
+## Privacy Policy
+
+Please also read our [Privacy Policy](https://github.com/butlergroup/caddy-gateway/blob/master/privacy-policy.md) to understand how we handle your personal information. 
+
+## Contact
+
+Have questions or suggestions? Reach out to us at dev@butlergroup.net. Thank you and happy coding! :)
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=butlergroup/caddy-gateway&type=Date)](https://www.star-history.com/#butlergroup/caddy-gateway&Date)

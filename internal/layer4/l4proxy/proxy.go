@@ -4,8 +4,8 @@
 package l4proxy
 
 import (
-	caddy "github.com/caddyserver/gateway/internal/caddyv2"
-	"github.com/caddyserver/gateway/internal/caddyv2/caddyhttp/reverseproxy"
+	caddy "github.com/butlergroup/caddy-gateway/internal/caddyv2"
+	"github.com/butlergroup/caddy-gateway/internal/caddyv2/caddyhttp/reverseproxy"
 )
 
 type HandlerName string

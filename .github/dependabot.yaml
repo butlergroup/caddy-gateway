@@ -3,15 +3,12 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: monthly
+      interval: daily
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: daily
   - package-ecosystem: gomod
     directory: /
     schedule:
-      interval: weekly
-    groups:
-      k8s.io:
-        patterns:
-          - k8s.io/api
-          - k8s.io/apimachinery
-          - k8s.io/client-go
-          - k8s.io/component-base
+      interval: daily

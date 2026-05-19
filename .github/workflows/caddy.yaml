@@ -1,5 +1,12 @@
 name: Caddy
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches:
@@ -10,12 +17,13 @@ on:
 jobs:
   build-image:
     name: Build Image
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     permissions:
       attestations: write
       contents: read
       id-token: write
       packages: write
+      security-events: write
     steps:
       - name: Code checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -48,16 +56,36 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           sbom: true
-          tags: ghcr.io/caddyserver/gateway:caddy-2.10.2
+          tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:caddy-2.11.3
           build-args: |
-            CADDY_VERSION=2.10.2
+            CADDY_VERSION=2.11.3
             CADDY_BUILDER_HASH=sha256:13bf132b50ab5a3abd4d62d4da27a9d8fd98818028746fe85e745d73e3e71f3d
             CADDY_HASH=sha256:87aa104ed6c658991e1b0672be271206b7cd9fec452d1bf3ed9ad6f8ab7a2348
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25
+        with:
+          image-ref: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}
+          format: "sarif"
+          output: "trivy-results.sarif"
+          # exit-code: 1 # fail the workflow if vulnerailities are found
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@9e0d7b8d25671d64c341c19c0152d693099fb5ba # v4.35.5
+        with:
+          sarif_file: "trivy-results.sarif"
 
       - name: Attest
         uses: actions/attest-build-provenance@96278af6caaf10aea03fd8d33a09a777ca52d62f # v3.2.0
         id: attest
         with:
-          subject-name: ghcr.io/caddyserver/gateway
+          subject-name: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
+
+      - name: GHCR retention policy
+        uses: actions/delete-package-versions@e5bc658cc4c965c472efe991f8beea3981499c55 # v5.0.0
+        with:
+          package-name: caddy
+          package-type: container
+          min-versions-to-keep: 51

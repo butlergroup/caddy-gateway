@@ -4,7 +4,7 @@
 package layer4
 
 import (
-	caddy "github.com/caddyserver/gateway/internal/caddyv2"
+	caddy "github.com/butlergroup/caddy-gateway/internal/caddyv2"
 )
 
 // Server represents a Caddy layer4 server.

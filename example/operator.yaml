@@ -228,7 +228,7 @@ spec:
     spec:
       containers:
         - name: caddy-gateway
-          image: ghcr.io/caddyserver/gateway:latest
+          image: ghcr.io/butlergroup/caddy-gateway:latest
           args:
             - --leader-elect
           ports:
