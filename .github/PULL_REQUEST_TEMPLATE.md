@@ -23,14 +23,15 @@ Fixes #
 #### Special notes for your reviewer:
 
 #### Does this pull request introduce a user-facing change?
+
 <!--
 If no, just write "NONE" in the release-note block below.
 If yes, a release note is required:
 Enter your extended release note in the block below. If the pull request requires additional action from users switching to the new release, include the string "action required".
 -->
+
 ```release-note:
 
 ```
 
 #### Additional documentation (i.e. user guide, etc.):
-

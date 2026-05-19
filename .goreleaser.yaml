@@ -69,16 +69,6 @@ sboms:
       - --output
       - spdx-json
 
-signs:
-  - cmd: cosign
-    artifacts: all
-    output: true
-    args:
-      - sign-blob
-      - --yes
-      - "--bundle=${artifact}.bundle"
-      - "${artifact}"
-
 docker_signs:
   - cmd: cosign
     artifacts: all

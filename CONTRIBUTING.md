@@ -36,6 +36,7 @@ Scan through our [existing issues](https://github.com/butlergroup/caddy-gateway/
 ### Make Changes
 
 1. Fork the repository. We use forks so that you can make your changes and test them without affecting the original project until you're ready to merge them.
+
 - Using VS Code:
   - [Fork the repo](https://code.visualstudio.com/docs/sourcecontrol/github).
 

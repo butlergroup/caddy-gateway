@@ -31,7 +31,6 @@ jobs:
           stale-issue-label: "no-issue-activity"
           close-issue-message: "This issue has had no activity for 67 days. Closing."
 
-          stale-pr-message: "This pull request has had no activity for 60 days. Labeling
-            as stale."
+          stale-pr-message: "This pull request has had no activity for 60 days. Labeling as stale."
           stale-pr-label: "no-pr-activity"
           close-pr-message: "This pull request has had no activity for 67 days. Closing."
