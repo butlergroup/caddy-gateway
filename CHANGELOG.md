@@ -1,6 +1,18 @@
 # Changelog
 
-## Caddy Gateway Version v0.2.8
+## Caddy Gateway Version v0.2.9
+
+#### New Features
+
+#### Improvements
+
+- Updated go.mod dependencies to latest
+
+#### Fixes
+
+---
+
+## Caddy Gateway Version v0.2.8 (05-18-2026)
 
 #### New Features
 
