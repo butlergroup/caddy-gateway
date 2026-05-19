@@ -1,6 +1,33 @@
 # Changelog
 
-## Caddy Gateway Version v0.2.4 
+## Caddy Gateway Version v0.2.6 
+
+#### New Features
+
+
+#### Improvements
+
+
+#### Fixes
+
+
+-----
+
+## Caddy Gateway Version v0.2.5 (05-18-2026)
+
+#### New Features
+
+
+#### Improvements
+
+
+#### Fixes
+- Further syntax corrections to CONTRIBUTING.md to allow nix to pass
+- Revision to .goreleaser.yaml to allow new GoReleaser version to succeed
+
+-----
+
+## Caddy Gateway Version v0.2.4 (05-18-2026)
 
 #### New Features
 

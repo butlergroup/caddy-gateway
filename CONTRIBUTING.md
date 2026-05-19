@@ -46,7 +46,7 @@ Scan through our [existing issues](https://github.com/butlergroup/caddy-gateway/
 - Using the command line:
   - [Fork the repo](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo#fork-an-example-repository).
 
-2. Clone the forked repo (branch) you created and start with your changes! 
+2. Clone the forked repo (branch) you created and start with your changes!
 
 ### Commit your update(s)
 

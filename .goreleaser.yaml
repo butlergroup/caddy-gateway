@@ -76,8 +76,7 @@ signs:
     args:
       - sign-blob
       - --yes
-      - "--output-certificate=${certificate}"
-      - "--output-signature=${signature}"
+      - "--bundle=${artifact}.bundle"
       - "${artifact}"
 
 docker_signs:
