@@ -1,12 +1,25 @@
 # Changelog
 
-## Caddy Gateway Version v0.2.7
+## Caddy Gateway Version v0.2.8
 
 #### New Features
 
 #### Improvements
 
 #### Fixes
+
+---
+
+## Caddy Gateway Version v0.2.7 (05-18-2026)
+
+#### New Features
+
+#### Improvements
+
+#### Fixes
+
+- Correction to release.yaml retention policy image name
+- Correction to caddy.yaml to allow build to succeed
 
 ---
 
@@ -19,7 +32,7 @@
 #### Fixes
 
 - Further syntax corrections to several files to allow nix to pass
-- Revisions to .goreleaser.yaml to allow release workflow to pass 
+- Revisions to .goreleaser.yaml to allow release workflow to pass
 
 ---
 

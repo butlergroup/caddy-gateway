@@ -11,8 +11,8 @@ on:
   push:
     branches:
       - master
-    paths:
-      - caddy.Containerfile
+#    paths:
+#      - caddy.Containerfile
 
 env:
   CADDY_VERSION: 2.11.3
