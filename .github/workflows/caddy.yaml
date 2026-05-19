@@ -11,8 +11,8 @@ on:
   push:
     branches:
       - master
-#    paths:
-#      - caddy.Containerfile
+    paths:
+      - caddy.Containerfile
 
 env:
   CADDY_VERSION: 2.11.3
@@ -96,6 +96,6 @@ jobs:
       - name: GHCR retention policy
         uses: actions/delete-package-versions@e5bc658cc4c965c472efe991f8beea3981499c55 # v5.0.0
         with:
-          package-name: caddy
+          package-name: caddy-gateway
           package-type: container
           min-versions-to-keep: 51

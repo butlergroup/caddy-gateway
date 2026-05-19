@@ -6,6 +6,8 @@
 
 #### Improvements
 
+- Updated go.mod dependencies to latest
+
 #### Fixes
 
 ---
