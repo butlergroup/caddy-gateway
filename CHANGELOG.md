@@ -1,6 +1,6 @@
 # Changelog
 
-## Caddy Gateway Version v0.2.3 
+## Caddy Gateway Version v0.2.4 
 
 #### New Features
 
@@ -13,6 +13,19 @@
 
 -----
 
+## Caddy Gateway Version v0.2.3 (05-18-2026)
+
+#### New Features
+
+
+#### Improvements
+
+
+#### Fixes
+- Further syntax corrections to terms-of-service.md and privacy-policy.md to allow nix to pass
+
+-----
+
 ## Caddy Gateway Version v0.2.2 (05-18-2026)
 
 #### New Features
@@ -22,7 +35,7 @@
 - Added Step Security audits to workflows
 
 #### Fixes
-- Corrections to terms-of-service.md to allow nix to pass
+- Syntax corrections to terms-of-service.md to allow nix to pass
 
 -----
 
