@@ -14,6 +14,11 @@ on:
     paths:
       - caddy.Containerfile
 
+env:
+  CADDY_VERSION: 2.11.3
+  CADDY_BUILDER_HASH: sha256:13bf132b50ab5a3abd4d62d4da27a9d8fd98818028746fe85e745d73e3e71f3d
+  CADDY_HASH: sha256:87aa104ed6c658991e1b0672be271206b7cd9fec452d1bf3ed9ad6f8ab7a2348
+
 jobs:
   build-image:
     name: Build Image
@@ -56,16 +61,16 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           sbom: true
-          tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:caddy-2.11.3
+          tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:caddy-${{ env.CADDY_VERSION }}
           build-args: |
-            CADDY_VERSION=2.11.3
-            CADDY_BUILDER_HASH=sha256:13bf132b50ab5a3abd4d62d4da27a9d8fd98818028746fe85e745d73e3e71f3d
-            CADDY_HASH=sha256:87aa104ed6c658991e1b0672be271206b7cd9fec452d1bf3ed9ad6f8ab7a2348
+            CADDY_VERSION=${{ env.CADDY_VERSION }}
+            CADDY_BUILDER_HASH=${{ env.CADDY_BUILDER_HASH }}
+            CADDY_HASH=${{ env.CADDY_HASH }}
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25
         with:
-          image-ref: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}
+          image-ref: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:caddy-${{ env.CADDY_VERSION }}
           format: "sarif"
           output: "trivy-results.sarif"
           # exit-code: 1 # fail the workflow if vulnerailities are found

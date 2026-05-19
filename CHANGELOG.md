@@ -1,5 +1,21 @@
 # Changelog
 
+## Caddy Gateway Version v0.2.1
+
+#### New Features
+
+
+#### Improvements
+
+
+#### Fixes
+- Revised defender-for-devops.yml to continue on error
+- Removed Go versions "1.24.7", "1.25.1" from ci.yaml to allow tests to pass
+- Corrected a minor syntax issue in dependabot-auto-merge.yml
+- Reorganized caddy.yaml so variable references are more clear and easier to manage
+
+-----
+
 ## Caddy Gateway Version v0.2.0
 
 #### New Features
