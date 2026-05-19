@@ -1,6 +1,5 @@
 [![](https://img.shields.io/badge/license-AGPL_3.0-blue.svg)](https://opensource.org/licenses/AGPL_3.0)
 [![CodeQL](https://github.com/butlergroup/caddy-gateway/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/butlergroup/caddy-gateway/actions/workflows/github-code-scanning/codeql)
-[![Build Caddy](https://github.com/butlergroup/caddy-gateway/actions/workflows/caddy.yaml/badge.svg)](https://github.com/butlergroup/caddy-gateway/actions/workflows/caddy.yaml)
 [![Build & Release Gateway](https://github.com/butlergroup/caddy-gateway/actions/workflows/release.yaml/badge.svg)](https://github.com/butlergroup/caddy-gateway/actions/workflows/release.yaml)
 [![Tests/CI](https://github.com/butlergroup/caddy-gateway/actions/workflows/ci.yaml/badge.svg)](https://github.com/butlergroup/caddy-gateway/actions/workflows/ci.yaml)
 [![Dependabot Updates](https://github.com/butlergroup/caddy-gateway/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/butlergroup/caddy-gateway/actions/workflows/dependabot/dependabot-updates)
