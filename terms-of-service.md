@@ -50,13 +50,13 @@ You agree that your comments will not violate any right of any third-party inclu
 
 ## Section 7 – Personal Information
 
-The handling of your personal information is governed by our Privacy Policy. You may view our Privacy Policy at any time by browsing to the posting so named. 
+The handling of your personal information is governed by our Privacy Policy. You may view our Privacy Policy at any time by browsing to the posting so named.
 
 ## Section 8 – Errors, Inaccuracies, and Omissions
 
 Occasionally there may be information related to the Service that contains typographical errors, inaccuracies or omissions. We reserve the right to correct any errors, inaccuracies or omissions, and to change or update information if any information in the Service or on any related website is inaccurate at any time without prior notice.
 
-We undertake no obligation to update, amend, or clarify information in the Service or on any related website, except as required by law. 
+We undertake no obligation to update, amend, or clarify information in the Service or on any related website, except as required by law.
 
 ## Section 9 – Prohibited Uses
 
@@ -80,7 +80,7 @@ You agree to indemnify, defend, and hold harmless The Butler Group LLC and our s
 
 ## Section 12 – Severability
 
-In the event that any provision of these Terms of Service is determined to be unlawful, void or unenforceable, such provision shall nonetheless be enforceable to the fullest extent permitted by applicable law, and such determination shall not affect the validity and enforceability of any other  provisions contained herein.
+In the event that any provision of these Terms of Service is determined to be unlawful, void or unenforceable, such provision shall nonetheless be enforceable to the fullest extent permitted by applicable law, and such determination shall not affect the validity and enforceability of any other provisions contained herein.
 
 ## Section 13 – Termination
 

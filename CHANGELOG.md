@@ -1,6 +1,32 @@
 # Changelog
 
-## Caddy Gateway Version v0.2.1
+## Caddy Gateway Version v0.2.3 
+
+#### New Features
+
+
+#### Improvements
+
+
+#### Fixes
+
+
+-----
+
+## Caddy Gateway Version v0.2.2 (05-18-2026)
+
+#### New Features
+
+
+#### Improvements
+- Added Step Security audits to workflows
+
+#### Fixes
+- Corrections to terms-of-service.md to allow nix to pass
+
+-----
+
+## Caddy Gateway Version v0.2.1 (05-18-2026)
 
 #### New Features
 
@@ -16,7 +42,7 @@
 
 -----
 
-## Caddy Gateway Version v0.2.0
+## Caddy Gateway Version v0.2.0 (05-18-2026)
 
 #### New Features
 - Added code-of-conduct.md
