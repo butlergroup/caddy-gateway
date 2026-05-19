@@ -9,7 +9,7 @@
 
 
 #### Fixes
-
+- Further syntax corrections to README.md and CONTRIBUTING.md to allow nix to pass
 
 -----
 

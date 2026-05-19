@@ -58,7 +58,7 @@ var _ = Describe("controller", Ordered, func() {
 			var err error
 
 			// projectimage stores the name of the image used in the example
-			projectimage := "ghcr.io/butlergroup/caddy-gateway/caddy-gateway:v0.2.3"
+			projectimage := "ghcr.io/butlergroup/caddy-gateway/caddy-gateway:v0.2.4"
 
 			By("building the manager(Operator) image")
 			cmd := exec.Command("make", "docker-build", fmt.Sprintf("IMG=%s", projectimage))

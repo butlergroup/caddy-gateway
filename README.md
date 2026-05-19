@@ -166,7 +166,7 @@ Please read our [Terms of Service](https://github.com/butlergroup/caddy-gateway/
 
 ## Privacy Policy
 
-Please also read our [Privacy Policy](https://github.com/butlergroup/caddy-gateway/blob/master/privacy-policy.md) to understand how we handle your personal information. 
+Please also read our [Privacy Policy](https://github.com/butlergroup/caddy-gateway/blob/master/privacy-policy.md) to understand how we handle your personal information.
 
 ## Contact
 
