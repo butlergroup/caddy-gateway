@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://goreleaser.com/static/schema.json
 version: 2
-
+project_name: caddy-gateway
 before:
   hooks:
     - go mod tidy
@@ -67,7 +67,8 @@ builds:
 kos:
   - build: caddy-gateway
     repositories:
-      - ghcr.io/butlergroup/caddy-gateway
+      - "{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}"
+      - "ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}"
     platforms:
       - linux/amd64
       - linux/arm64
