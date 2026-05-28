@@ -98,4 +98,4 @@ jobs:
         with:
           package-name: caddy-gateway
           package-type: container
-          min-versions-to-keep: 51
+          min-versions-to-keep: 81

@@ -12,6 +12,12 @@ on:
     tags:
       - "*"
 
+env:
+  ACR_REGISTRY_NAME: containerbutler # example: "myRegistry" .azurecr.io
+  ACR_REPO_NAME: ${{ github.event.repository.name }} # example: myRepo
+  KEY_ID: ${{ secrets.ACR_KEY_ID }} # example: https://mynotationakv.vault.azure.net/keys/notationLeafCert/c585b8ad8fc542b28e41e555d9b3a1fd
+  NOTATION_EXPERIMENTAL: 1 # [Optional] when set, use Referrers API in the workflow (Recommended)
+
 jobs:
   goreleaser:
     name: Goreleaser
@@ -32,12 +38,10 @@ jobs:
         uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
         with:
           egress-policy: audit
-
       - name: Code checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
-
       - name: Free disk space
         run: |
           echo "Disk before cleanup:"
@@ -48,45 +52,87 @@ jobs:
           sudo rm -rf /opt/hostedtoolcache/CodeQL
           echo "Disk after cleanup:"
           df -h
-
       - name: Setup Go
         uses: actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c # v6.4.0
         with:
           go-version: ${{ matrix.go }}
-
       - name: Install cosign
         uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
-
       - name: Install syft
         uses: anchore/sbom-action/download-syft@e22c389904149dbc22b58101806040fa8d37a610 # v0.24.0
-
       - name: Install ko
         uses: ko-build/setup-ko@d006021bd0c28d1ce33a07e7943d48b079944c8d # v0.9
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@06116385d9baf250c9f4dcb4858b16962ea869c3 # v4.1.0
         with:
           platforms: arm,arm64,s390x,ppc64le,riscv64
-
       - name: Login to DockerHub
         uses: docker/login-action@650006c6eb7dba73a995cc03b0b2d7f5ca915bee # v4.2.0
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-
+      # Log in to Azure with your service principal
+      - name: Azure login
+        uses: Azure/login@532459ea530d8321f2fb9bb10d1e0bcf23869a43 # v3.0.0
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Construct & store ACR login server
+        run: |
+          ACR_LOGIN_SERVER=$(az acr show \
+            --name ${{ env.ACR_REGISTRY_NAME }} \
+            --query loginServer \
+            -o tsv)
+          echo "ACR_LOGIN_SERVER=$ACR_LOGIN_SERVER" >> "$GITHUB_ENV"
+      # Log in to your ACR registry
+      - name: Login to Azure Container Registry (Docker)
+        uses: docker/login-action@650006c6eb7dba73a995cc03b0b2d7f5ca915bee # v4.2.0
+        with:
+          registry: ${{ env.ACR_LOGIN_SERVER }}
+          username: ${{ secrets.AZURE_CREDENTIALS_CLIENT_ID }}
+          password: ${{ secrets.AZURE_CREDENTIALS_CLIENT_SECRET }}
+      - name: Authenticate to Google Cloud
+        uses: "google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093" # v3.0.0
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+      - name: Set up gCloud SDK
+        uses: "google-github-actions/setup-gcloud@aa5489c8933f4cc7a4f7d45035b3b1440c9c10db" # v3.0.1
+      - name: Configure gcloud Docker for GAR
+        run: |
+          gcloud auth configure-docker \
+            ${{ secrets.GAR_LOCATION }}-docker.pkg.dev \
+            --quiet
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@acca2b1b2070338fb9fd1ca27ecee81d687e58e5 # v6.1.2
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name: Login to Amazon ECR
+        run: |
+          aws ecr get-login-password \
+            --region ${{ secrets.AWS_REGION }} | \
+          docker login \
+            --username AWS \
+            --password-stdin \
+            ${{ secrets.ECR_REGISTRY }}
+      # Install Notation CLI with the default version "1.0.0"
+      - name: setup notation
+        uses: notaryproject/notation-action/setup@b6fee73110795d6793253c673bd723f12bcf9bbb # v1.2.2
       # https://github.com/actions/checkout/issues/290#issuecomment-680260080
       - name: Fetch upstream tags
         run: git fetch --tags --force
-
       - name: Run Goreleaser
         id: run-goreleaser
         uses: goreleaser/goreleaser-action@5daf1e915a5f0af01ddbcd89a43b8061ff4f1a89 # v7.2.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COSIGN_EXPERIMENTAL: 1
         with:
           args: release --clean
-
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+          GAR_LOCATION: ${{ secrets.GAR_LOCATION }}
+          GAR_REPOSITORY: ${{ secrets.GAR_REPOSITORY }}
+          ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
+          COSIGN_EXPERIMENTAL: 1
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25
         with:
@@ -94,12 +140,10 @@ jobs:
           format: "sarif"
           output: "trivy-results.sarif"
           exit-code: 1 # fail the workflow if vulnerabilities are found
-
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@7211b7c8077ea37d8641b6271f6a365a22a5fbfa # v4.36.0
         with:
           sarif_file: "trivy-results.sarif"
-
       - name: Generate SLSA metadata
         id: slsa
         env:
@@ -107,18 +151,208 @@ jobs:
           METADATA: "${{ steps.run-goreleaser.outputs.metadata }}"
         run: |
           set -euo pipefail
-
           checksum_file="$(echo "$ARTIFACTS" | jq -r '.[] | select (.type == "Checksum") | .path')"
           echo 'hashes='"$(base64 -w0 < "$checksum_file")" >> "$GITHUB_OUTPUT"
           tag_name="$(echo "$METADATA" | jq -r '.tag')"
           echo 'tag_name='"$tag_name" >> "$GITHUB_OUTPUT"
-
       - name: GHCR retention policy
         uses: actions/delete-package-versions@e5bc658cc4c965c472efe991f8beea3981499c55 # v5.0.0
         with:
           package-name: caddy-gateway
           package-type: container
-          min-versions-to-keep: 51
+          min-versions-to-keep: 81
+      - name: Get runner public IP
+        id: ip
+        run: echo "ip=$(curl -s https://api.ipify.org)" >> "$GITHUB_OUTPUT"
+      - name: Allow runner IP in Key Vault
+        run: |
+          az keyvault network-rule add \
+            --name computerbutler-keyvault \
+            --resource-group computerbutler \
+            --ip-address ${{ steps.ip.outputs.ip }}
+      # Sign your ACR OCI artifact using private key stored in AKV
+      - name: sign ACR artifact using key pair from AKV
+        uses: notaryproject/notation-action/sign@b6fee73110795d6793253c673bd723f12bcf9bbb # v1.2.2
+        with:
+          plugin_name: azure-kv
+          plugin_url: https://github.com/Azure/notation-azure-kv/releases/download/v1.2.1/notation-azure-kv_1.2.1_linux_amd64.tar.gz
+          plugin_checksum: 67c5ccaaf28dd44d2b6572684d84e344a02c2258af1d65ead3910b3156d3eaf5
+          key_id: ${{ env.KEY_ID }}
+          target_artifact_reference: ${{ env.target_artifact_reference }}
+          signature_format: cose
+          plugin_config: |-
+            self_signed=true
+          # If you are using self-signed certificate from AKV, then the `plugin_config` should be:
+          # plugin_config: |-
+          #   self_signed=true
+          # ca_certs=.github/cert-bundle/cert-bundle.crt
+          force_referrers_tag: "true"
+      - name: Remove runner IP from Key Vault
+        run: |
+          az keyvault network-rule remove \
+            --name computerbutler-keyvault \
+            --resource-group computerbutler \
+            --ip-address ${{ steps.ip.outputs.ip }}
+      - name: Extract current Helm chart version
+        id: chart
+        run: |
+          VERSION=$(grep '^version:' chart/Chart.yaml | awk '{print $2}')
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+      - name: Generate azureManifest.yaml
+        run: |
+          sed \
+            -e "s/__VERSION__/${{ steps.chart.outputs.version }}/g" \
+            -e "s#__ACR_REGISTRY_SERVER__#${{ secrets.ACR_REGISTRY_SERVER }}#g" \
+            azureManifest.yaml.tpl > manifest.yaml
+      - name: Enable CNAB image source
+        run: |
+          yq -i '.cnab.enabled = true' chart/values.yaml
+      - name: Build CNAB Bundle and Publish to ACR
+        uses: addnab/docker-run-action@4f65fabd2431ebc8d299f8e5a018d79a769ae185 # v3
+        with:
+          image: mcr.microsoft.com/container-package-app:latest
+          options: "-v /var/run/docker.sock:/var/run/docker.sock \n-v ${{ github.workspace }}:/data \n-v /home/runner/.docker:/root/.docker\n--entrypoint \"/bin/bash\"\n"
+          run: |
+            cd /data
+            cpa buildbundle --force
+      - name: Multi-registry retention cleanup (keep last 10 tags + latest)
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          KEEP=81
+          REPO="${{ github.event.repository.name }}"
+
+          echo "Starting unified cleanup (keeping last $KEEP digests + latest)"
+
+          # Helper: build KEEP DIGEST SET
+          declare -A KEEP_DIGESTS=()
+
+          # 1. ACR - collect manifests
+          echo "Processing ACR..."
+
+          ACR_REG="${{ env.ACR_REGISTRY_NAME }}"
+
+          # Get digests sorted by push time (newest first)
+          mapfile -t ACR_DIGESTS < <(
+            az acr manifest list-metadata \
+              --registry "$ACR_REG" \
+              --name "$REPO" \
+              --orderby time_desc \
+              --query "[].digest" \
+              -o tsv
+          )
+
+          # Always keep latest KEEP digests
+          for ((i=0; i<KEEP && i<${#ACR_DIGESTS[@]}; i++)); do
+            KEEP_DIGESTS["${ACR_DIGESTS[$i]}"]=1
+          done
+
+          # Always keep latest tag digest
+          LATEST_ACR_DIGEST=$(
+            az acr manifest list-metadata \
+              --registry "$ACR_REG" \
+              --name "$REPO" \
+              --query "[?tags[?name=='latest']].digest | [0]" \
+              -o tsv || true
+          )
+
+          if [[ -n "$LATEST_ACR_DIGEST" ]]; then
+            KEEP_DIGESTS["$LATEST_ACR_DIGEST"]=1
+          fi
+
+          # 2. ECR
+          echo "Processing ECR..."
+          ECR_REPO="${{ secrets.ECR_REPO }}"
+
+          mapfile -t ECR_DIGESTS < <(
+            aws ecr describe-images \
+              --repository-name "$ECR_REPO" \
+              --query 'sort_by(imageDetails,& imagePushedAt)[].imageDigest' \
+              --output text | tr '\t' '\n' | tac
+          )
+
+          for ((i=0; i<KEEP && i<${#ECR_DIGESTS[@]}; i++)); do
+            KEEP_DIGESTS["${ECR_DIGESTS[$i]}"]=1
+          done
+
+          # Keep latest tag (if present)
+          LATEST_ECR_DIGEST=$(
+            aws ecr describe-images \
+              --repository-name "$ECR_REPO" \
+              --query "imageDetails[?imageTags && contains(imageTags, \`latest\`)].imageDigest | [0]" \
+              --output text || true
+          )
+
+          if [[ -n "$LATEST_ECR_DIGEST" && "$LATEST_ECR_DIGEST" != "None" ]]; then
+            KEEP_DIGESTS["$LATEST_ECR_DIGEST"]=1
+          fi
+
+          # 3. GAR
+          echo "Processing GAR..."
+
+          GAR_LOCATION="${{ secrets.GAR_LOCATION }}"
+          GAR_PROJECT="${{ secrets.GCP_PROJECT_ID }}"
+          GAR_REPO="${{ secrets.GAR_REPOSITORY }}"
+
+          FULL_GAR_REPO="${GAR_LOCATION}-docker.pkg.dev/${GAR_PROJECT}/${GAR_REPO}/${REPO}"
+
+          mapfile -t GAR_DIGESTS < <(
+            gcloud artifacts docker images list "$FULL_GAR_REPO" \
+              --sort-by=~UPDATE_TIME \
+              --format="value(DIGEST)"
+          )
+
+          for ((i=0; i<KEEP && i<${#GAR_DIGESTS[@]}; i++)); do
+            KEEP_DIGESTS["${GAR_DIGESTS[$i]}"]=1
+          done
+
+          # Keep latest tag digest (best-effort)
+          LATEST_GAR_DIGEST=$(gcloud artifacts docker images list "$FULL_GAR_REPO" \
+            --filter="tags:latest" \
+            --format="value(DIGEST)" \
+            --limit=1 || true)
+
+          if [[ -n "$LATEST_GAR_DIGEST" ]]; then
+            KEEP_DIGESTS["$LATEST_GAR_DIGEST"]=1
+          fi
+
+          # DELETE PASS (all registries)
+          echo "Starting deletion pass..."
+
+          # ACR delete
+          for digest in "${ACR_DIGESTS[@]}"; do
+            if [[ -z "${KEEP_DIGESTS[$digest]+x}" ]]; then
+              echo "ACR delete: $digest"
+              az acr repository delete \
+                --name "$ACR_REG" \
+                --image "${REPO}@${digest}" \
+                --yes || true
+            fi
+          done
+
+          # ECR delete
+          for digest in "${ECR_DIGESTS[@]}"; do
+            if [[ -z "${KEEP_DIGESTS[$digest]+x}" ]]; then
+              echo "ECR delete: $digest"
+              aws ecr batch-delete-image \
+                --repository-name "$ECR_REPO" \
+                --image-ids imageDigest="$digest" || true
+            fi
+          done
+
+          # GAR delete
+          for digest in "${GAR_DIGESTS[@]}"; do
+            if [[ -z "${KEEP_DIGESTS[$digest]+x}" ]]; then
+              echo "GAR delete: $digest"
+              gcloud artifacts docker images delete \
+                "${FULL_GAR_REPO}@${digest}" \
+                --delete-tags \
+                --quiet || true
+            fi
+          done
+
+          echo "Cleanup complete."
 
     outputs:
       hashes: "${{ steps.slsa.outputs.hashes }}"

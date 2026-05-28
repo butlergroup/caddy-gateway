@@ -69,6 +69,9 @@ kos:
     repositories:
       - "{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}"
       - "ghcr.io/{{ .Env.GITHUB_REPOSITORY_OWNER }}/{{ .ProjectName }}"
+      - "{{ .Env.ACR_LOGIN_SERVER }}/{{ .ProjectName }}"
+      - "{{ .Env.GAR_LOCATION }}-docker.pkg.dev/{{ .Env.GCP_PROJECT_ID }}/{{ .Env.GAR_REPOSITORY }}/{{ .ProjectName }}"
+      - "{{ .Env.ECR_REGISTRY }}/{{ .ProjectName }}"
     platforms:
       - linux/amd64
       - linux/arm64
