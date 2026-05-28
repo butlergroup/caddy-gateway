@@ -26,7 +26,7 @@ utilizing [Caddy](https://caddyserver.com/) as the underlying web server.
 
 ## Sponsorship/Donation
 
-Sponsorships/Donations are happily accepted via Github Sponsors, or via Storj at 0x6E86f2734372ee559E62e6AB04Edc2b0455A86bF (my cats and I need to eat!)
+Sponsorships/Donations are happily accepted via Github Sponsors, or via Storj at 0x6E86f2734372ee559E62e6AB04Edc2b0455A86bF
 
 ## Description
 
@@ -99,11 +99,11 @@ We recommend installing all Gateway API CRDs, including those that are experimen
 
 ```bash
 # Install Gateway API CRDs (including those that are experimental)
-kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.0/experimental-install.yaml
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.5.1/experimental-install.yaml
 
 # Install Gateway API CRDs (only stable resources)
 # NOTE: **Do not use this command if you already ran the `experimental-install`**
-kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.0/standard-install.yaml
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.5.1/standard-install.yaml
 ```
 
 ### Installing the Controller and Caddy

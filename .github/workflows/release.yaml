@@ -71,7 +71,7 @@ jobs:
           image-ref: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}
           format: "sarif"
           output: "trivy-results.sarif"
-          # exit-code: 1 # fail the workflow if vulnerailities are found
+          exit-code: 1 # fail the workflow if vulnerabilities are found
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@9e0d7b8d25671d64c341c19c0152d693099fb5ba # v4.35.5
