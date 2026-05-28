@@ -20,10 +20,47 @@ builds:
     env:
       - CGO_ENABLED=0
     goos:
+      - darwin
       - linux
+      - windows
+      - freebsd
     goarch:
       - amd64
+      - arm
       - arm64
+      - s390x
+      - ppc64le
+      - riscv64
+    goarm:
+      - "5"
+      - "6"
+      - "7"
+    ignore:
+      - goos: darwin
+        goarch: arm
+      - goos: darwin
+        goarch: ppc64le
+      - goos: darwin
+        goarch: s390x
+      - goos: darwin
+        goarch: riscv64
+      - goos: windows
+        goarch: ppc64le
+      - goos: windows
+        goarch: s390x
+      - goos: windows
+        goarch: riscv64
+      - goos: windows
+        goarch: arm
+      - goos: freebsd
+        goarch: ppc64le
+      - goos: freebsd
+        goarch: s390x
+      - goos: freebsd
+        goarch: riscv64
+      - goos: freebsd
+        goarch: arm
+        goarm: "5"
     flags:
       - -trimpath
 
@@ -34,6 +71,17 @@ kos:
     platforms:
       - linux/amd64
       - linux/arm64
+      - linux/s390x
+      - linux/arm
+      - linux/ppc64le
+      - linux/riscv64
+      - darwin/amd64
+      - darwin/arm64
+      - windows/amd64
+      - windows/arm64
+      - freebsd/amd64
+      - freebsd/arm64
+      - freebsd/arm
     tags:
       - "{{ .Tag }}"
       # TODO: find a way to set the latest package tag, only when the release gets published on GitHub.
@@ -42,13 +90,12 @@ kos:
       - "{{ if not .Prerelease }}latest{{ end }}"
     creation_time: "{{ .CommitTimestamp }}"
     ko_data_creation_time: "{{ .CommitTimestamp }}"
-    sbom: 'spdx'
+    sbom: "spdx"
     bare: true
     preserve_import_paths: false
     base_image: gcr.io/distroless/static:nonroot
     labels:
       org.opencontainers.image.description: "Kubernetes Gateway API implementation powered by Caddy"
-      org.opencontainers.image.licenses: Apache-2.0
       org.opencontainers.image.created: "{{ .Date }}"
       org.opencontainers.image.name: "{{ .ProjectName }}"
       org.opencontainers.image.revision: "{{ .FullCommit }}"

@@ -1,18 +1,6 @@
 # Changelog
 
-## Caddy Gateway Version v0.2.13
-
-#### New Features
-
-#### Improvements
-
-- Updated go.mod dependencies to latest
-
-#### Fixes
-
----
-
-## Caddy Gateway Version v0.2.12 (05-18-2026)
+## Caddy Gateway API Version v0.2.12 (05-18-2026)
 
 #### New Features
 
@@ -24,7 +12,7 @@
 
 ---
 
-## Caddy Gateway Version v0.2.11 (05-18-2026)
+## Caddy Gateway API Version v0.2.11 (05-18-2026)
 
 #### New Features
 
@@ -36,7 +24,7 @@
 
 ---
 
-## Caddy Gateway Version v0.2.10 (05-18-2026)
+## Caddy Gateway API Version v0.2.10 (05-18-2026)
 
 #### New Features
 
@@ -48,7 +36,7 @@
 
 ---
 
-## Caddy Gateway Version v0.2.9 (05-18-2026)
+## Caddy Gateway API Version v0.2.9 (05-18-2026)
 
 #### New Features
 
@@ -60,7 +48,7 @@
 
 ---
 
-## Caddy Gateway Version v0.2.8 (05-18-2026)
+## Caddy Gateway API Version v0.2.8 (05-18-2026)
 
 #### New Features
 
@@ -72,7 +60,7 @@
 
 ---
 
-## Caddy Gateway Version v0.2.7 (05-18-2026)
+## Caddy Gateway API Version v0.2.7 (05-18-2026)
 
 #### New Features
 
@@ -85,7 +73,7 @@
 
 ---
 
-## Caddy Gateway Version v0.2.6 (05-18-2026)
+## Caddy Gateway API Version v0.2.6 (05-18-2026)
 
 #### New Features
 
@@ -98,7 +86,7 @@
 
 ---
 
-## Caddy Gateway Version v0.2.5 (05-18-2026)
+## Caddy Gateway API Version v0.2.5 (05-18-2026)
 
 #### New Features
 
@@ -111,7 +99,7 @@
 
 ---
 
-## Caddy Gateway Version v0.2.4 (05-18-2026)
+## Caddy Gateway API Version v0.2.4 (05-18-2026)
 
 #### New Features
 
@@ -123,7 +111,7 @@
 
 ---
 
-## Caddy Gateway Version v0.2.3 (05-18-2026)
+## Caddy Gateway API Version v0.2.3 (05-18-2026)
 
 #### New Features
 
@@ -135,7 +123,7 @@
 
 ---
 
-## Caddy Gateway Version v0.2.2 (05-18-2026)
+## Caddy Gateway API Version v0.2.2 (05-18-2026)
 
 #### New Features
 
@@ -149,7 +137,7 @@
 
 ---
 
-## Caddy Gateway Version v0.2.1 (05-18-2026)
+## Caddy Gateway API Version v0.2.1 (05-18-2026)
 
 #### New Features
 
@@ -164,7 +152,7 @@
 
 ---
 
-## Caddy Gateway Version v0.2.0 (05-18-2026)
+## Caddy Gateway API Version v0.2.0 (05-18-2026)
 
 #### New Features
 

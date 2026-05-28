@@ -1,0 +1,186 @@
+name: Trigger Release on Renovate bot & Dependabot updates
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - go.mod
+      - go.sum
+      - main.go
+      - "**/config/**"
+      - "**/example/**"
+      - "**/hack/**"
+      - "**/internal/**"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    # if: |
+    #   startsWith(github.event.head_commit.message, 'Update ') || startsWith(github.event.head_commit.message, 'chore: ')
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+      - name: Determine next patch version
+        id: version
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || true)
+
+          echo "Current version: $LAST_TAG"
+
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$LAST_TAG"
+
+          PATCH=$((PATCH + 1))
+
+          NEW_VERSION="$MAJOR.$MINOR.$PATCH"
+
+          echo "New version: $NEW_VERSION"
+
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Update Helm files
+        run: |
+          VERSION=${{ steps.version.outputs.version }}
+
+          # Chart.yaml
+          sed -i "s/^version:.*/version: ${VERSION}/" ./chart/Chart.yaml
+          sed -i "s/^appVersion:.*/appVersion: \"${VERSION}\"/" ./chart/Chart.yaml
+
+          # values.yaml
+          sed -i "s/tag:.*/tag: \"${VERSION}\"/g" ./chart/values.yaml
+
+      - name: Update CHANGELOG.md
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          DATE=$(date +%m-%d-%Y)
+
+          SAFE_COMMIT_MSG=$(printf '%s\n' "$COMMIT_MSG")
+
+          DEP=""
+          FROM_VERSION=""
+          TO_VERSION=""
+          CHANGE_TEXT=""
+
+          #
+          # Renovate examples:
+          #
+          # Update cgr.dev/chainguard/wolfi-base Docker digest to cccc183
+          # Update cgr.dev/chainguard/wolfi-base Docker tag to 20260520
+          #
+
+          DEP=$(printf '%s\n' "$SAFE_COMMIT_MSG" | sed -n \
+            's/^Update \(.*\) Docker .*$/\1/p')
+
+          TO_VERSION=$(printf '%s\n' "$SAFE_COMMIT_MSG" | sed -n \
+            's/^.* to \(.*\)$/\1/p')
+
+          if [ -n "$DEP" ]; then
+            CHANGE_TEXT="- Updated ${DEP} to ${TO_VERSION} through automated dependency management"
+          fi
+
+          #
+          # Dependabot examples:
+          #
+          # chore: Bump k8s.io/api from 0.36.0 to 0.36.1
+          #
+
+          if [ -z "$DEP" ]; then
+            DEP=$(printf '%s\n' "$SAFE_COMMIT_MSG" | sed -n \
+              's/^.*Bump \(.*\) from .*$/\1/p')
+
+            FROM_VERSION=$(printf '%s\n' "$SAFE_COMMIT_MSG" | sed -n \
+              's/^.*from \(.*\) to .*$/\1/p')
+
+            TO_VERSION=$(printf '%s\n' "$SAFE_COMMIT_MSG" | sed -n \
+              's/^.*to \(.*\)$/\1/p')
+
+            if [ -n "$DEP" ]; then
+              CHANGE_TEXT="- Updated ${DEP} from ${FROM_VERSION} to ${TO_VERSION} through automated dependency management"
+            fi
+          fi
+
+          #
+          # Final fallback
+          #
+
+          if [ -z "$CHANGE_TEXT" ]; then
+            CHANGE_TEXT="- Updated dependency(s) through automated dependency management"
+          fi
+
+          echo "Detected dependency: $DEP"
+          echo "From: $FROM_VERSION"
+          echo "To: $TO_VERSION"
+
+          cat > changelog_entry.md <<EOF
+          ## Caddy Gateway API & Helm Chart Version ${VERSION} (${DATE})
+
+          #### New Features
+
+          #### Improvements
+
+          ${CHANGE_TEXT}
+
+          #### Fixes
+
+          -----
+
+          EOF
+
+          cat changelog_entry.md CHANGELOG.md > CHANGELOG.tmp
+          mv CHANGELOG.tmp CHANGELOG.md
+
+      - name: Commit version updates
+        run: |
+          git add ./chart/Chart.yaml \
+                  ./chart/values.yaml \
+                  CHANGELOG.md
+
+          git commit -m "chore(release): dependency updated. Bump project version to ${{ steps.version.outputs.version }}" || true
+
+          git push origin HEAD:master
+
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ secrets.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: Create new tag & release
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          CURRENT_SHA=$(git rev-parse HEAD)
+
+          gh api \
+            --method POST \
+            repos/${{ github.repository }}/git/refs \
+            -f ref="refs/tags/${VERSION}" \
+            -f sha="${CURRENT_SHA}"
