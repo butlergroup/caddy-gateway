@@ -60,7 +60,7 @@ jobs:
 
           echo "New version: $NEW_VERSION"
 
-          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Update Helm files
         run: |
@@ -177,10 +177,10 @@ jobs:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
           VERSION: ${{ steps.version.outputs.version }}
         run: |
-          CURRENT_SHA=$(git rev-parse HEAD)
+          CURRENT_SHA="$(git rev-parse HEAD)"
 
           gh api \
             --method POST \
-            repos/${{ github.repository }}/git/refs \
-            -f ref="refs/tags/${VERSION}" \
-            -f sha="${CURRENT_SHA}"
+            "repos/${{ github.repository }}/git/refs" \
+            -f "ref=refs/tags/${VERSION}" \
+            -f "sha=${CURRENT_SHA}"
