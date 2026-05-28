@@ -62,7 +62,7 @@ jobs:
 
           echo "version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
 
-      - name: Update Helm files
+      - name: Update project files to new version
         run: |
           VERSION=${{ steps.version.outputs.version }}
 
@@ -72,6 +72,12 @@ jobs:
 
           # values.yaml
           sed -i "s/tag:.*/tag: \"${VERSION}\"/g" ./chart/values.yaml
+
+          # Makefile bundle version
+          sed -i "s/^VERSION ?=.*/VERSION ?= ${VERSION}/" ./Makefile
+
+          # e2e project image version
+          sed -i "s#projectimage := \".*:v.*\"#projectimage := \"ghcr.io/butlergroup/caddy-gateway/caddy-gateway:v${VERSION}\"#" ./test/e2e/e2e_test.go
 
       - name: Update CHANGELOG.md
         env:
@@ -159,6 +165,8 @@ jobs:
         run: |
           git add ./chart/Chart.yaml \
                   ./chart/values.yaml \
+                  ./Makefile \
+                  ./test/e2e/e2e_test.go \
                   CHANGELOG.md
 
           git commit -m "chore(release): dependency updated. Bump project version to ${{ steps.version.outputs.version }}" || true
