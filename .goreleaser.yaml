@@ -79,13 +79,6 @@ kos:
       - linux/arm
       - linux/ppc64le
       - linux/riscv64
-      - darwin/amd64
-      - darwin/arm64
-      - windows/amd64
-      - windows/arm64
-      - freebsd/amd64
-      - freebsd/arm64
-      - freebsd/arm
     tags:
       - "{{ .Tag }}"
       # TODO: find a way to set the latest package tag, only when the release gets published on GitHub.
