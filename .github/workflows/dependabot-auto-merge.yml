@@ -19,7 +19,10 @@ jobs:
       checks: read
       actions: write
 
-    if: github.event.pull_request.user.login == 'dependabot[bot]' || github.event.pull_request.user.login == 'butlergroup-automerge-token-issuer[bot]'
+    if: |
+      github.event.pull_request.user.login == 'dependabot[bot]' ||
+      github.event.pull_request.user.login == 'butlergroup-automerge-token-issuer[bot]' ||
+      github.event.pull_request.user.login == 'github-actions[bot]'
 
     steps:
       - name: Harden the runner
