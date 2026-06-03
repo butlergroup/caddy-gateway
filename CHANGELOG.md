@@ -1,3 +1,15 @@
+## Caddy Gateway API & Helm Chart Version v0.2.16 (06-02-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated go.mod and workflows to use latest Go version (1.26.4)
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.15 (06-01-2026)
 
 #### New Features

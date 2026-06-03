@@ -21,7 +21,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        go: ["1.26.3"]
+        go: ["1.26.4"]
     permissions:
       contents: read
     steps:
