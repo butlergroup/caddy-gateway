@@ -69,25 +69,18 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@650006c6eb7dba73a995cc03b0b2d7f5ca915bee # v4.2.0
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
+          username: butlergroup
           password: ${{ secrets.DOCKER_PASSWORD }}
       # Log in to Azure with your service principal
       - name: Azure login
         uses: Azure/login@532459ea530d8321f2fb9bb10d1e0bcf23869a43 # v3.0.0
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: Construct & store ACR login server
-        run: |
-          ACR_LOGIN_SERVER=$(az acr show \
-            --name ${{ env.ACR_REGISTRY_NAME }} \
-            --query loginServer \
-            -o tsv)
-          echo "ACR_LOGIN_SERVER=$ACR_LOGIN_SERVER" >> "$GITHUB_ENV"
       # Log in to your ACR registry
       - name: Login to Azure Container Registry (Docker)
         uses: docker/login-action@650006c6eb7dba73a995cc03b0b2d7f5ca915bee # v4.2.0
         with:
-          registry: ${{ env.ACR_LOGIN_SERVER }}
+          registry: containerbutler.azurecr.io
           username: ${{ secrets.AZURE_CREDENTIALS_CLIENT_ID }}
           password: ${{ secrets.AZURE_CREDENTIALS_CLIENT_SECRET }}
       - name: Authenticate to Google Cloud
@@ -100,17 +93,17 @@ jobs:
       - name: Configure gcloud Docker for GAR
         run: |
           gcloud auth configure-docker \
-            ${{ secrets.GAR_LOCATION }}-docker.pkg.dev \
+            us-docker.pkg.dev \
             --quiet
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@e7f100cf4c008499ea8adda475de1042d6975c7b # v6.2.0
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: us-east-1
       - name: Login to Amazon ECR
         run: |
           aws ecr get-login-password \
-            --region ${{ secrets.AWS_REGION }} | \
+            --region us-east-1 | \
           docker login \
             --username AWS \
             --password-stdin \
@@ -128,9 +121,6 @@ jobs:
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-          GAR_LOCATION: ${{ secrets.GAR_LOCATION }}
-          GAR_REPOSITORY: ${{ secrets.GAR_REPOSITORY }}
           ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
           COSIGN_EXPERIMENTAL: 1
       - name: Run Trivy vulnerability scanner
@@ -202,7 +192,6 @@ jobs:
         run: |
           sed \
             -e "s/__VERSION__/${{ steps.chart.outputs.version }}/g" \
-            -e "s#__ACR_REGISTRY_SERVER__#${{ secrets.ACR_REGISTRY_SERVER }}#g" \
             azureManifest.yaml.tpl > manifest.yaml
       - name: Enable CNAB image source
         run: |
@@ -291,11 +280,11 @@ jobs:
           # 3. GAR
           echo "Processing GAR..."
 
-          GAR_LOCATION="${{ secrets.GAR_LOCATION }}"
-          GAR_PROJECT="${{ secrets.GCP_PROJECT_ID }}"
-          GAR_REPO="${{ secrets.GAR_REPOSITORY }}"
+          GAR_LOCATION="us-docker.pkg.dev"
+          GAR_PROJECT="containerbutler"
+          GAR_REPO="caddy-gateway"
 
-          FULL_GAR_REPO="${GAR_LOCATION}-docker.pkg.dev/${GAR_PROJECT}/${GAR_REPO}/${REPO}"
+          FULL_GAR_REPO="us-docker.pkg.dev/${GAR_PROJECT}/${GAR_REPO}/${REPO}"
 
           mapfile -t GAR_DIGESTS < <(
             gcloud artifacts docker images list "$FULL_GAR_REPO" \

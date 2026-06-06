@@ -21,7 +21,7 @@ global:
       caddy-gateway:
         tag: "v0.2.18"
         image: caddy-gateway
-        registry: containerbutler-bxene7duhhe5d8cy.azurecr.io
+        registry: containerbutler.azurecr.io
 
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
