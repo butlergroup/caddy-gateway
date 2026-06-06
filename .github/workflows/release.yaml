@@ -280,7 +280,6 @@ jobs:
           # 3. GAR
           echo "Processing GAR..."
 
-          GAR_LOCATION="us-docker.pkg.dev"
           GAR_PROJECT="containerbutler"
           GAR_REPO="caddy-gateway"
 
