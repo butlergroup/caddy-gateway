@@ -1,3 +1,17 @@
+## Caddy Gateway API & Helm Chart Version v0.2.22 (06-12-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated github.com/onsi/ginkgo/v2 from v2.29.0 to v2.30.0 through automated dependency management
+- Updated golang.org/x/tools from v0.45.0 to v0.46.0 through automated dependency management
+- chore: Update go.mod dependencies
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.21 (06-11-2026)
 
 #### New Features
