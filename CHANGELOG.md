@@ -1,3 +1,16 @@
+## Caddy Gateway API & Helm Chart Version v0.2.28 (06-24-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated k8s.io/kube-openapi from v0.0.0-20260623045532-0b43c5e46c6b to v0.0.0-20260624041617-8f3fa4921821 through automated dependency management
+- chore: Update go.mod dependencies
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.27 (06-23-2026)
 
 #### New Features
