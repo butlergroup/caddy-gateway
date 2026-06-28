@@ -1,3 +1,16 @@
+## Caddy Gateway API & Helm Chart Version v0.2.31 (06-28-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated github.com/prometheus/procfs from v0.20.1 to v0.21.0 through automated dependency management
+- chore: Update go.mod dependencies
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.30 (06-27-2026)
 
 #### New Features
