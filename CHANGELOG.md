@@ -1,3 +1,16 @@
+## Caddy Gateway API & Helm Chart Version v0.2.32 (06-29-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated github.com/go-openapi/jsonpointer from v0.23.1 to v0.23.2 through automated dependency management
+- chore: Update go.mod dependencies
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.31 (06-28-2026)
 
 #### New Features
