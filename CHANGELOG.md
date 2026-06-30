@@ -1,3 +1,28 @@
+## Caddy Gateway API & Helm Chart Version v0.2.33 (06-30-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated github.com/go-openapi/jsonpointer from v0.23.2 to v0.24.0 through automated dependency management
+- Updated github.com/go-openapi/swag from v0.26.1 to v0.27.0 through automated dependency management
+- Updated github.com/go-openapi/swag/cmdutils from v0.26.1 to v0.27.0 through automated dependency management
+- Updated github.com/go-openapi/swag/conv from v0.26.1 to v0.27.0 through automated dependency management
+- Updated github.com/go-openapi/swag/fileutils from v0.26.1 to v0.27.0 through automated dependency management
+- Updated github.com/go-openapi/swag/jsonutils from v0.26.1 to v0.27.0 through automated dependency management
+- Updated github.com/go-openapi/swag/loading from v0.26.1 to v0.27.0 through automated dependency management
+- Updated github.com/go-openapi/swag/mangling from v0.26.1 to v0.27.0 through automated dependency management
+- Updated github.com/go-openapi/swag/netutils from v0.26.1 to v0.27.0 through automated dependency management
+- Updated github.com/go-openapi/swag/stringutils from v0.26.1 to v0.27.0 through automated dependency management
+- Updated github.com/go-openapi/swag/typeutils from v0.26.1 to v0.27.0 through automated dependency management
+- Updated github.com/go-openapi/swag/yamlutils from v0.26.1 to v0.27.0 through automated dependency management
+- Updated sigs.k8s.io/gateway-api from v1.5.1 to v1.6.0 through automated dependency management
+- chore: Update go.mod dependencies
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.32 (06-29-2026)
 
 #### New Features
