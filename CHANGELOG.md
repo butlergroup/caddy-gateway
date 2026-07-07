@@ -1,3 +1,19 @@
+## Caddy Gateway API & Helm Chart Version v0.2.35 (07-07-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated golang.org/x/text from v0.38.0 to v0.39.0 through automated dependency management
+- Updated k8s.io/kube-openapi from v0.0.0-20260624041617-8f3fa4921821 to v0.0.0-20260706235625-cdb1db5517a0 through automated dependency management
+- Updated k8s.io/utils from v0.0.0-20260626114624-be93311217bd to v0.0.0-20260707023825-cf1189d6abe3 through automated dependency management
+- Updated sigs.k8s.io/structured-merge-diff/v6 from v6.4.0 to v6.4.1 through automated dependency management
+- chore: Update go.mod dependencies
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.34 (07-01-2026)
 
 #### New Features
