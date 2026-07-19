@@ -10,7 +10,7 @@ image:
   registry: docker.io
   repository: butlergroup/caddy-gateway
   pullPolicy: IfNotPresent
-  tag: "v0.2.41"
+  tag: "v0.2.42"
 
 cnab:
   enabled: false
@@ -19,7 +19,7 @@ global:
   azure:
     images:
       caddy-gateway:
-        tag: "v0.2.41"
+        tag: "v0.2.42"
         image: caddy-gateway
         registry: containerbutler.azurecr.io
 
