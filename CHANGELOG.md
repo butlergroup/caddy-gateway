@@ -1,3 +1,30 @@
+## Caddy Gateway API & Helm Chart Version v0.2.44 (07-21-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated github.com/go-logr/logr from v1.4.3 to v1.4.4 through automated dependency management
+- Updated github.com/go-openapi/swag from v0.27.1 to v0.27.3 through automated dependency management
+- Updated github.com/go-openapi/swag/cmdutils from v0.27.1 to v0.27.3 through automated dependency management
+- Updated github.com/go-openapi/swag/conv from v0.27.1 to v0.27.3 through automated dependency management
+- Updated github.com/go-openapi/swag/fileutils from v0.27.1 to v0.27.3 through automated dependency management
+- Updated github.com/go-openapi/swag/jsonutils from v0.27.1 to v0.27.3 through automated dependency management
+- Updated github.com/go-openapi/swag/loading from v0.27.1 to v0.27.3 through automated dependency management
+- Updated github.com/go-openapi/swag/mangling from v0.27.1 to v0.27.3 through automated dependency management
+- Updated github.com/go-openapi/swag/netutils from v0.27.1 to v0.27.3 through automated dependency management
+- Updated github.com/go-openapi/swag/pools from v0.27.1 to v0.27.3 through automated dependency management
+- Updated github.com/go-openapi/swag/stringutils from v0.27.1 to v0.27.3 through automated dependency management
+- Updated github.com/go-openapi/swag/typeutils from v0.27.1 to v0.27.3 through automated dependency management
+- Updated github.com/go-openapi/swag/yamlutils from v0.27.1 to v0.27.3 through automated dependency management
+- Updated github.com/prometheus/client_golang from v1.23.2 to v1.24.0 through automated dependency management
+- Updated k8s.io/kube-openapi from v0.0.0-20260718133925-74c0ba7c0470 to v0.0.0-20260721042612-c26577a1ec9a through automated dependency management
+- chore: Update go.mod dependencies
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.43 (07-20-2026)
 
 #### New Features
