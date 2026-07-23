@@ -1,3 +1,20 @@
+## Caddy Gateway API & Helm Chart Version v0.2.46 (07-23-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated github.com/prometheus/common from v0.70.0 to v0.70.1 through automated dependency management
+- Updated k8s.io/api from v0.36.2 to v0.36.3 through automated dependency management
+- Updated k8s.io/apiextensions-apiserver from v0.36.2 to v0.36.3 through automated dependency management
+- Updated k8s.io/apimachinery from v0.36.2 to v0.36.3 through automated dependency management
+- Updated k8s.io/client-go from v0.36.2 to v0.36.3 through automated dependency management
+- chore: Update go.mod dependencies
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.45 (07-22-2026)
 
 #### New Features
