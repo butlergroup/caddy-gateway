@@ -1,3 +1,16 @@
+## Caddy Gateway API & Helm Chart Version v0.2.47 (07-25-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated github.com/prometheus/client_golang from v1.24.0 to v1.24.1 through automated dependency management
+- chore: Update go.mod dependencies
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.46 (07-23-2026)
 
 #### New Features
