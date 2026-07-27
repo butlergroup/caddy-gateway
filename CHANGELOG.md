@@ -1,3 +1,16 @@
+## Caddy Gateway API & Helm Chart Version v0.2.48 (07-27-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated go.yaml.in/yaml/v3 from v3.0.4 to v3.0.5 through automated dependency management
+- chore: Update go.mod dependencies
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.47 (07-25-2026)
 
 #### New Features
