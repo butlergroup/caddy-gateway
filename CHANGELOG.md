@@ -1,3 +1,15 @@
+## Caddy Gateway API & Helm Chart Version v0.2.52 (08-03-2026)
+
+#### New Features
+
+#### Improvements
+
+- Revert "chore: Update go.mod dependencies"
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.51 (08-03-2026)
 
 #### New Features
