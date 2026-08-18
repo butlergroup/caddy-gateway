@@ -1,3 +1,16 @@
+## Caddy Gateway API & Helm Chart Version v0.2.58 (08-18-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated github.com/fxamacker/cbor/v2 from v2.9.2 to v2.9.3 through automated dependency management
+- chore: Update go.mod dependencies
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.57 (08-14-2026)
 
 #### New Features
