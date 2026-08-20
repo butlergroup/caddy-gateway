@@ -1,6 +1,6 @@
 module github.com/butlergroup/caddy-gateway
 
-go 1.26.5
+go 1.27.0
 
 require (
 	github.com/go-logr/logr v1.4.4
