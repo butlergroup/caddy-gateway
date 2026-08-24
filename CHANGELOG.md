@@ -1,3 +1,16 @@
+## Caddy Gateway API & Helm Chart Version v0.2.63 (08-24-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated github.com/matthewpi/certwatcher from v1.3.0 to v1.4.0 through automated dependency management
+- chore: Update go.mod dependencies
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.62 (08-22-2026)
 
 #### New Features
