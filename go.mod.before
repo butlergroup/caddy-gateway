@@ -5,7 +5,7 @@ go 1.27.0
 require (
 	github.com/go-logr/logr v1.4.4
 	github.com/google/go-cmp v0.7.0
-	github.com/matthewpi/certwatcher v1.3.0
+	github.com/matthewpi/certwatcher v1.4.0
 	github.com/onsi/ginkgo/v2 v2.32.1
 	github.com/onsi/gomega v1.41.0
 	k8s.io/api v0.36.4
