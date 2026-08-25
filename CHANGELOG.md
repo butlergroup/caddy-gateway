@@ -1,3 +1,16 @@
+## Caddy Gateway API & Helm Chart Version v0.2.64 (08-25-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated github.com/google/pprof from v0.0.0-20260802141513-ef3492d7dac3 to v0.0.0-20260825002013-8a176773c324 through automated dependency management
+- chore: Update go.mod dependencies
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.63 (08-24-2026)
 
 #### New Features
