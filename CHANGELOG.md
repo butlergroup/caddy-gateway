@@ -1,3 +1,20 @@
+## Caddy Gateway API & Helm Chart Version v0.2.65 (08-26-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated github.com/go-openapi/jsonreference from v1.0.0 to v1.0.1 through automated dependency management
+- Updated github.com/google/pprof from v0.0.0-20260825002013-8a176773c324 to v0.0.0-20260825171938-4d453200e7d9 through automated dependency management
+- Updated go.opentelemetry.io/otel from v1.45.0 to v1.46.0 through automated dependency management
+- Updated go.opentelemetry.io/otel/metric from v1.45.0 to v1.46.0 through automated dependency management
+- Updated go.opentelemetry.io/otel/trace from v1.45.0 to v1.46.0 through automated dependency management
+- chore: Update go.mod dependencies
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.64 (08-25-2026)
 
 #### New Features
