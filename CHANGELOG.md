@@ -1,3 +1,19 @@
+## Caddy Gateway API & Helm Chart Version v0.2.66 (08-27-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated k8s.io/api from v0.36.4 to v0.37.0 through automated dependency management
+- Updated k8s.io/apiextensions-apiserver from v0.36.4 to v0.37.0 through automated dependency management
+- Updated k8s.io/apimachinery from v0.36.4 to v0.37.0 through automated dependency management
+- Updated k8s.io/client-go from v0.36.4 to v0.37.0 through automated dependency management
+- chore: Update go.mod dependencies
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.65 (08-26-2026)
 
 #### New Features
