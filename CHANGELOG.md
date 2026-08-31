@@ -1,3 +1,18 @@
+## Caddy Gateway API & Helm Chart Version v0.2.68 (08-31-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated github.com/google/pprof from v0.0.0-20260825171938-4d453200e7d9 to v0.0.0-20260830191439-4932ad3515ea through automated dependency management
+- Updated github.com/prometheus/client_model from v0.6.2 to v0.6.3 through automated dependency management
+- Updated github.com/prometheus/common from v0.70.1 to v0.71.0 through automated dependency management
+- chore: Update go.mod dependencies
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.67 (08-28-2026)
 
 #### New Features
