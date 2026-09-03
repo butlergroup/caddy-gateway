@@ -1,3 +1,16 @@
+## Caddy Gateway API & Helm Chart Version v0.2.70 (09-03-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated golang.org/x/crypto from v0.55.0 to v0.56.0 through automated dependency management
+- chore: Update go.mod dependencies
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.69 (09-02-2026)
 
 #### New Features
