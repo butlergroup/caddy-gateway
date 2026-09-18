@@ -14,11 +14,11 @@ name: OSV-Scanner
 on:
   pull_request:
   merge_group:
-    branches: ["master"]
+    branches: ["main"]
   schedule:
-    - cron: "19 07 * * *"
+    - cron: "13 20 * * *"
   push:
-    branches: ["master"]
+    branches: ["main"]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -43,7 +43,6 @@ jobs:
       # Example of specifying custom arguments
       scan-args: |-
         -r
-        --skip-git
         ./
   scan-pr:
     permissions:
@@ -58,5 +57,4 @@ jobs:
       # Example of specifying custom arguments
       scan-args: |-
         -r
-        --skip-git
         ./
