@@ -1,3 +1,15 @@
+## Caddy Gateway API & Helm Chart Version v0.2.72 (09-26-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated dependency(s) through automated dependency management
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.71 (09-04-2026)
 
 #### New Features
