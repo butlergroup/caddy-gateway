@@ -1,3 +1,21 @@
+## Caddy Gateway API & Helm Chart Version v0.2.73 (11-14-2026)
+
+#### New Features
+
+#### Improvements
+
+- Updated github.com/charmbracelet/ultraviolet digest to 8786532</li> through automated dependency management
+- Updated github.com/golangci/rowserrcheck digest to f772fe6 through automated dependency management
+- Updated github.com/pjbgf/sha1cd to v0.7.0</li> through automated dependency management
+- Updated github.com/uudashr/iface to v1.5.3</li> through automated dependency management
+- Updated go.opentelemetry.io/otel/trace from 1.46.0 to 1.47.0 through automated dependency management
+- Updated ubuntu:26.04 to 88a381d</li> through automated dependency management
+- updated-dependencies:
+
+#### Fixes
+
+---
+
 ## Caddy Gateway API & Helm Chart Version v0.2.72 (09-26-2026)
 
 #### New Features
